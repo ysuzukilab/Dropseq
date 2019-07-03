@@ -6,7 +6,7 @@
 
 <<COMMENT
 usage: qsub -l os7 -cwd preparation.sh
-execute in your 10X directory
+execute in your Dropseq directory
 COMMENT
 
 mkdir tools
