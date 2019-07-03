@@ -2,7 +2,7 @@
 #$ -S /bin/sh
 
 << COMMENT
-USAGE: qsub -cwd -l s_vmem=50G,mem_req=50G ~/Dropseq_dir/drop-seq.sh -f ~/Dropseq_dir/data/R1_barcode.fastq.gz -r ~/Dropseq_dir/data/R2_transcript.fastq.gz -i ID_NAME -c EC -m DROP
+USAGE: qsub -cwd -l s_vmem=50G,mem_req=50G ~/Dropseq_dir/drop-seq.sh -f ~/Dropseq_dir/data/R1_barcode.fastq.gz -r ~/Dropseq_dir/data/R2_transcript.fastq.gz -i ID_NAME -c EC
 
     Desctiption:
           mapping singlecell data and making umi count data
@@ -13,26 +13,27 @@ USAGE: qsub -cwd -l s_vmem=50G,mem_req=50G ~/Dropseq_dir/drop-seq.sh -f ~/Dropse
         -i ... analysis ID .This ID use output file names
         -c ... Expected detect Cell Num. default is
                DROP      = 500
-        -m ... The following Library is currently available.
-               "DDSEQ" "DROP"
 COMMENT
 
-#tools(python, bowtie2, star, subread, R)
+#modules(python, bowtie, star, R)
 module use /usr/local/package/modulefiles
-module load 
+module load python/2.7
+module load bowtie/2.3.4.3
+module load star/2.6.1c
+module load r/3.5
+
+#tools
+export PATH=~/Dropseq_dir/tools/cellranger-3.0.2/:$PATH
+export PATH=~/Dropseq_dir/tools/homer/bin/:$PATH
 
 #refence(mouse)
 
 #refence(human)
 
 #barcode pattern
-DDSEQ=".{0,5}(?P<cell_1>.{6})(?P<discard_1>TAGCCATCGCATTGC)(?P<cell_2>.{6})(?P<discard_2>TACCTCTGAGCTGAA)(?P<cell_3>.{6})(?P<discard_2>ACG)(?P<umi_1>.{8})GAC.*"
-ICELL8=""
 DROP="CCCCCCCCCCCCNNNNNNNNN"
-
 L_LIST=("DROP")
 DEF_NUM=(1000)
-
 NUM_THREAD=8
 
 while getopts f:r:i:c:m::zh OPT;do
