@@ -18,36 +18,18 @@ USAGE: qsub -cwd -l s_vmem=50G,mem_req=50G ~/Dropseq_dir/drop-seq.sh -f ~/Dropse
 COMMENT
 
 #tools(python, bowtie2, star, subread, R)
-export PYTHONHOME=/usr/local/package/python/current2.7
-export PATH=${PYTHONHOME}/bin:${PATH}
-export LD_LIBRARY_PATH=${PYTHONHOME}/lib:${LD_LIBRARY_PATH}
 module use /usr/local/package/modulefiles
 module load 
-export PATH=/usr/local/package/bowtie2/2.2.9/:$PATH
-export PATH=/home/tissei/.local/bin/:$PATH
-export PATH=/home/tissei/tools/STAR-2.5.3a/bin/Linux_x86_64/:$PATH
-export PATH=/home/tissei/tools/subread-1.6.0-Linux-x86_64/bin/:$PATH
-export PATH=/home/tissei/reference/cellranger-2.1.0/cellranger-cs/2.1.0/bin/:$PATH
-export PATH=/usr/local/package/r/3.5.0/:$PATH
-export PATH=/home/tissei/tools/homer/bin/:$PATH
-export PATH=/home/tissei/tools/bedtools/:$PATH
 
 #refence(mouse)
-#RIB=/home/tissei/reference/Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal
-#STAR_REF=/home/tissei/reference/refdata-cellranger-mm10-1.2.0/star/
-#GTF=/home/tissei/reference/refdata-cellranger-mm10-1.2.0/genes/genes.gtf
-#mm10=/home/tissei/reference/mm10.chrom.sizes
 
 #refence(human)
-RIB=/home/tissei/reference/Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal
-STAR_REF=/home/tissei/reference/refdata-cellranger-GRCh38-3.0.0/star/
-GTF=/home/tissei/reference/refdata-cellranger-GRCh38-3.0.0/genes/genes.gtf
-hg38=/home/tissei/reference/hg38.chrom.sizes
 
 #barcode pattern
-#DDSEQ=".{0,5}(?P<cell_1>.{6})(?P<discard_1>TAGCCATCGCATTGC)(?P<cell_2>.{6})(?P<discard_2>TACCTCTGAGCTGAA)(?P<cell_3>.{6})(?P<discard_2>ACG)(?P<umi_1>.{8})GAC.*"
-#ICELL8=""
+DDSEQ=".{0,5}(?P<cell_1>.{6})(?P<discard_1>TAGCCATCGCATTGC)(?P<cell_2>.{6})(?P<discard_2>TACCTCTGAGCTGAA)(?P<cell_3>.{6})(?P<discard_2>ACG)(?P<umi_1>.{8})GAC.*"
+ICELL8=""
 DROP="CCCCCCCCCCCCNNNNNNNNN"
+
 L_LIST=("DROP")
 DEF_NUM=(1000)
 
