@@ -1,6 +1,9 @@
 data/
 drop-seq.sh
-
+*.sh.e*
+*.sh.o*
+reference/
+tools/
 
 
 
