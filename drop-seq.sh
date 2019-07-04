@@ -197,8 +197,6 @@ umi_c(){
 }
 
 bigwig(){
-        #D7=$WDIR/homer
-        #mkdir $D7
         makeTagDirectory ${WDIR}/bigwig $D6/${ID}_sorted.bam -keepAll -mapq -1
         makeUCSCfile ${WDIR}/bigwig/ -o auto -noadj
         gunzip ${WDIR}/bigwig/bigwig.ucsc.bedGraph.gz
