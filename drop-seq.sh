@@ -79,7 +79,7 @@ else
 fi
 
 #reference
-if [ $REF = "GRCh38" || $REF = "hg38" ];then
+if [ $REF = "GRCh38" ] || [ $REF = "hg38" ];then
 	RIB=~/Dropseq_dir/reference/Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal.fa
 	STAR_REF=~/Dropseq_dir/reference/GRCh38/star/
 	GTF=~/Dropseq_dir/reference/GRCh38/genes/genes.gtf
