@@ -37,6 +37,7 @@ wget https://sourceforge.net/projects/subread/files/subread-1.6.4/subread-1.6.4-
 tar zxvf subread-1.6.4-Linux-x86_64.tar.gz
 cd ../
 
+export PATH=~/10X_dir/tools/cellranger-3.0.2:$PATH
 mkdir reference
 cd reference
 
