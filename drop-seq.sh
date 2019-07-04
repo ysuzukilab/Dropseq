@@ -17,7 +17,7 @@ USAGE:  qsub -cwd -l os7 ~/Dropseq_dir/drop-seq.sh \
         -1 ... Input Read1 path (barcode read)
         -2 ... Input Read2 path (transcript read)
         -i ... analysis ID. This ID is used output file names
-	-r ... reference ID (hg38 or mm10)
+	-r ... reference ID (GRCh38/hg38 or mm10)
         -c ... Expected detect Cell Num. Default is DROP = 1000
 COMMENT
 
@@ -65,7 +65,7 @@ while getopts 1:2:i:r:c::zh OPT;do
 done
 
 #Read1 Read2
-if [ -z "$R2" ] || [ -z "$R1" ] ;then
+if [ -z $R1 ] || [ -z $R2 ] ;then
         echo "Read1かRead2が未定義です";
 fi
 
@@ -81,12 +81,12 @@ fi
 #reference
 if [ $REF = "GRCh38" || $REF = "hg38" ];then
 	RIB=~/Dropseq_dir/reference/Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal
-	STAR_REF=~/Dropseq_dir/reference/refdata-cellranger-GRCh38-3.0.0/star/
-	GTF=~/Dropseq_dir/reference/refdata-cellranger-GRCh38-3.0.0/genes/genes.gtf
+	STAR_REF=~/Dropseq_dir/reference/GRCh38/star/
+	GTF=~/Dropseq_dir/reference/GRCh38/genes/genes.gtf
 elif [ $REF = "mm10" ]; then
 	RIB=~/Dropseq_dir/reference/Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal
-	STAR_REF=~/Dropseq_dir/reference/refdata-cellranger-mm10-1.2.0/star/
-	GTF=~/Dropseq_dir/reference/refdata-cellranger-mm10-1.2.0/genes/genes.gtf
+	STAR_REF=~/Dropseq_dir/reference/mm10/star/
+	GTF=~/Dropseq_dir/reference/mm10/genes/genes.gtf
 else
 	echo "specified reference $REF is not available"
 fi
