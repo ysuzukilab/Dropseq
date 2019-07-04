@@ -80,11 +80,11 @@ fi
 
 #reference
 if [ $REF = "GRCh38" || $REF = "hg38" ];then
-	RIB=~/Dropseq_dir/reference/Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal
+	RIB=~/Dropseq_dir/reference/Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal.fa
 	STAR_REF=~/Dropseq_dir/reference/GRCh38/star/
 	GTF=~/Dropseq_dir/reference/GRCh38/genes/genes.gtf
 elif [ $REF = "mm10" ]; then
-	RIB=~/Dropseq_dir/reference/Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal
+	RIB=~/Dropseq_dir/reference/Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal.fa
 	STAR_REF=~/Dropseq_dir/reference/mm10/star/
 	GTF=~/Dropseq_dir/reference/mm10/genes/genes.gtf
 else
