@@ -105,6 +105,7 @@ case "$MODE" in
 esac
 fi
 
+#preparation
 WDIR=work_${ID}
 
 if [ -e "$WDIR/${ID}_START_LOG" ] && [ -z "$RETRY" ]; then
