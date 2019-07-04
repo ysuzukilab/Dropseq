@@ -111,7 +111,14 @@ cellranger mkref --genome=mm10 \
                  --genes=Mus_musculus.GRCm38.93.filtered.gtf \
                  --ref-version=3.0.0
 
+wget ftp://igenome:G3nom3s4u@ussd-ftp.illumina.com/Homo_sapiens/UCSC/hg38/Homo_sapiens_UCSC_hg38.tar.gz
+tar xvf Homo_sapiens_UCSC_hg38.tar.gz
 
+wget ftp://igenome:G3nom3s4u@ussd-ftp.illumina.com/Mus_musculus/UCSC/mm10/Mus_musculus_UCSC_mm10.tar.gz
+tar xvf Mus_musculus_UCSC_mm10.tar.gz
+
+cd ../
+pip install --user umi_tools
 
 
 
