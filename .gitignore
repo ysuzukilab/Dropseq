@@ -3,7 +3,7 @@ data/
 *.sh.o*
 reference/
 tools/
-
+drop-seq.sh
 
 
 
