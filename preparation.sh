@@ -37,7 +37,9 @@ wget https://sourceforge.net/projects/subread/files/subread-1.6.4/subread-1.6.4-
 tar zxvf subread-1.6.4-Linux-x86_64.tar.gz
 cd ../
 
+export PATH=~/Dropseq_dir/tools/STAR-2.7.1a/bin/Linux_x86_64/:$PATH
 export PATH=~/Dropseq_dir/tools/cellranger-3.0.2:$PATH
+
 mkdir reference
 cd reference
 
@@ -81,7 +83,6 @@ wget http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-mm10-3.0.0.tar.g
 wget ftp://ftp.ensembl.org/pub/release-93/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 gunzip Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 
-
 wget ftp://ftp.ensembl.org/pub/release-93/gtf/mus_musculus/Mus_musculus.GRCm38.93.gtf.gz
 gunzip Mus_musculus.GRCm38.93.gtf.gz
 
@@ -116,6 +117,18 @@ tar xvf Homo_sapiens_UCSC_hg38.tar.gz
 
 wget ftp://igenome:G3nom3s4u@ussd-ftp.illumina.com/Mus_musculus/UCSC/mm10/Mus_musculus_UCSC_mm10.tar.gz
 tar xvf Mus_musculus_UCSC_mm10.tar.gz
+
+STAR --runThreadN 8 \
+     --runMode genomeGenerate \
+     --genomeDir mm10/star \
+     --genomeFastaFiles mm10/fasta/genome.fa \
+     --sjdbGTFfile mm10/genes/genes.gtf
+
+STAR --runThreadN 8 \
+     --runMode genomeGenerate \
+     --genomeDir GRCh38/star \
+     --genomeFastaFiles GRCh38/fasta/genome.fa \
+     --sjdbGTFfile GRCh38/genes/genes.gtf
 
 cd ../
 pip install --user umi_tools
