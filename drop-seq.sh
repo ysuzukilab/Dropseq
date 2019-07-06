@@ -5,9 +5,9 @@
 #-pe def_slot 4
 
 << COMMENT
-USAGE:  qsub -cwd -l os7 ~/Dropseq_dir/drop-seq.sh \
-	-1 ~/Dropseq_dir/data/R1_barcode.fastq.gz \
-	-2 ~/Dropseq_dir/data/R2_transcript.fastq.gz \
+USAGE:  qsub -cwd -l os7 drop-seq.sh \
+	-1 data/R1_barcode.fastq.gz \
+	-2 data/R2_transcript.fastq.gz \
 	-i ID_NAME -r REFERENCE -c EC
 
     Description:
@@ -27,10 +27,7 @@ module load bowtie/2.3.4.3
 module load r/3.5
 module load samtools/1.9
 
-#tools(python2.7, umi_tools, cellranger, homer, STAR, subread, bedtools2)
-#export PYTHONHOME=/usr/local/package/modulefiles/python/3.6.5
-#export PATH=${PYTHONHOME}/bin:${PATH}
-#export LD_LIBRARY_PATH=${PYTHONHOME}/lib:${LD_LIBRARY_PATH}
+#tools(umi_tools, cellranger, homer, STAR, subread, bedtools2)
 export PATH=~/.local/bin/:$PATH
 export PATH=~/Dropseq_dir/tools/cellranger-3.0.2/:$PATH
 export PATH=~/Dropseq_dir/tools/homer/bin/:$PATH
