@@ -185,7 +185,7 @@ fcount(){
                       -s 1 \
                       -T 4
 
-        samtools sort ${D5}/${ID}_Aligned.sortedByCoord.out.bam.featureCounts.bam -o ${WDIR}/${ID}_sorted
+        samtools sort ${D5}/${ID}_Aligned.sortedByCoord.out.bam.featureCounts.bam -o ${WDIR}/${ID}_sorted.bam
         samtools index ${WDIR}/${ID}_sorted.bam
 }
 
