@@ -37,6 +37,8 @@ wget https://sourceforge.net/projects/subread/files/subread-1.6.4/subread-1.6.4-
 tar zxvf subread-1.6.4-Linux-x86_64.tar.gz
 cd ../
 
+module use /usr/local/package/modulefiles
+module load bowtie/2.3.4.3
 export PATH=~/Dropseq_dir/tools/STAR-2.7.1a/bin/Linux_x86_64/:$PATH
 export PATH=~/Dropseq_dir/tools/cellranger-3.0.2:$PATH
 
@@ -129,6 +131,10 @@ STAR --runThreadN 8 \
      --genomeDir GRCh38/star \
      --genomeFastaFiles GRCh38/fasta/genome.fa \
      --sjdbGTFfile GRCh38/genes/genes.gtf
+
+bowtie2-build -f Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal.fa Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/hhumRibosomal 
+
+bowtie2-build -f Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal.fa Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal 
 
 cd ../
 pip install --user umi_tools
