@@ -10,14 +10,14 @@ USAGE:  qsub -cwd -l os7 ~/Dropseq_dir/drop-seq.sh \
 	-2 ~/Dropseq_dir/data/R2_transcript.fastq.gz \
 	-i ID_NAME -r REFERENCE -c EC
 
-    Desctiption:
+    Description:
 	mapping singlecell data and making umi count data
 
     Options
         -1 ... Input Read1 path (barcode read)
         -2 ... Input Read2 path (transcript read)
-        -i ... analysis ID. This ID is used output file names
-	-r ... reference ID (GRCh38/hg38 or mm10)
+        -i ... Analysis ID. This ID is used for output file names
+	-r ... Reference ID (GRCh38/hg38 or mm10)
         -c ... Expected detect Cell Num. Default is DROP = 1000
 COMMENT
 
@@ -100,7 +100,7 @@ ID=${ID:-$tmp_id}
 #BC=`eval echo '$'$MODE`
 
 #CELL NUM
-if [ -z $CELL ] ; then
+if [ -z $CELL ]; then
 case "$MODE" in
         ${L_LIST[0]} )CELL=${DEF_NUM[0]} ;; #DROP
 esac
