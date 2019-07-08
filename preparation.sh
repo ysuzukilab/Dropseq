@@ -132,7 +132,7 @@ STAR --runThreadN 8 \
      --genomeFastaFiles GRCh38/fasta/genome.fa \
      --sjdbGTFfile GRCh38/genes/genes.gtf
 
-bowtie2-build -f Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal.fa Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/hhumRibosomal 
+bowtie2-build -f Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal.fa Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal 
 
 bowtie2-build -f Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal.fa Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal 
 
