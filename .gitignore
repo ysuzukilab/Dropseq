@@ -3,7 +3,9 @@ data/
 *.sh.o*
 reference/
 tools/
-work_tmp/
+work_*/
+eofiles/
+summarise*
 
 
 
