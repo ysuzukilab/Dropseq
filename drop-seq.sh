@@ -166,9 +166,9 @@ mapping(){
              --outWigType wiggle read1_5p \
              --sjdbGTFfile $GTF \
              --runThreadN $NUM_THREAD \
-             --outFileNamePrefix ${WDIR}/${ID}_
+             --outFileNamePrefix ${WDIR}/
 
-        mv ${WDIR}/${ID}_Log* ${WDIR}/${ID}_SJ.out.tab ${WDIR}/${ID}__STARgenome $D4
+        mv ${WDIR}/Log* ${WDIR}/SJ.out.tab ${WDIR}/__STARgenome $D4
         printf "mapping finish...\n" >>"$WDIR/${ID}_START_LOG"
 }
 
