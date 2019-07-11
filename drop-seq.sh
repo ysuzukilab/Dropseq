@@ -168,7 +168,7 @@ mapping(){
              --runThreadN $NUM_THREAD \
              --outFileNamePrefix ${WDIR}/
 
-        mv ${WDIR}/Log* ${WDIR}/SJ.out.tab ${WDIR}/__STARgenome $D4
+        mv ${WDIR}/Log* ${WDIR}/SJ.out.tab ${WDIR}/_STARgenome $D4
         printf "mapping finish...\n" >>"$WDIR/${ID}_START_LOG"
 }
 
