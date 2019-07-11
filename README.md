@@ -1,7 +1,7 @@
 # Drop-seq
 Repository for Drop-seq Analysis
 
-##Usage
+## Usage
 1. Install
 * Enter your information from [this link](https://support.10xgenomics.com/single-cell-gene-expression/software/downloads/latest)
 * Install cellranger **using your own token&id**
@@ -9,12 +9,11 @@ Repository for Drop-seq Analysis
 mkdir tools
 cd tools
 
-// Example (Modify this code)
+// Modify this code
 wget -O cellranger-3.0.2.tar.gz "http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.0.2.tar.gz?Expires=(put your token & id)"
 tar exzvf cellranger-3.0.2.tar.gz
 ```
-* Get references
-if you want to get more references, see [this link](https://support.10xgenomics.com/single-cell-gene-expression/software/downloads/latest)
+* If you want to get more references, see [this link](https://support.10xgenomics.com/single-cell-gene-expression/software/downloads/latest)
 
 ```
 qsub -l os7 -cwd path/to/preparation.sh
@@ -27,6 +26,7 @@ qsub -cwd -l os7 drop-seq.sh -1 path/to/barcode.fastq.gz -2 path/to/transcript.f
 ```
 
 ## Directory
+```
 .
 ├── README.md
 ├── data
@@ -44,7 +44,7 @@ qsub -cwd -l os7 drop-seq.sh -1 path/to/barcode.fastq.gz -2 path/to/transcript.f
     ├── 2.7.1a.tar.gz
     ├── homer
     └── etc.
-
+```
 
 
 
