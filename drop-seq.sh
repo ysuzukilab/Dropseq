@@ -178,11 +178,11 @@ fcount(){
         featureCounts -a $GTF \
                       -o ${D5}/gene_assigned \
                       -g gene_name \
-                      -R BAM ${WDIR}/${ID}_Aligned.sortedByCoord.out.bam \
+                      -R BAM ${WDIR}/Aligned.sortedByCoord.out.bam \
                       -s 1 \
                       -T 4
 
-        samtools sort ${D5}/${ID}_Aligned.sortedByCoord.out.bam.featureCounts.bam -o ${WDIR}/${ID}_sorted.bam
+        samtools sort ${D5}/Aligned.sortedByCoord.out.bam.featureCounts.bam -o ${WDIR}/${ID}_sorted.bam
         samtools index ${WDIR}/${ID}_sorted.bam
 }
 
