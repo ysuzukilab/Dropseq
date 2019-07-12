@@ -48,6 +48,6 @@ NUM=($(ls -1 ${FASTQS}/*R1* | wc -l))
 
 for i in `seq 0 $(($NUM - 1))`
 do
-	qsub -l os7 -cwd ~/Dropseq_dir/drop-seq.sh -1 ${R1S[$i]} -2 ${R2S[$i]} -i sample$(($i + 1)) -r ~/Dropseq_dir/reference/$REF -c $EC
+	qsub -l os7 -cwd ~/Dropseq_dir/drop-seq.sh -1 ${R1S[$i]} -2 ${R2S[$i]} -i sample$(($i + 1)) -r $REF -c $EC
 done
 
