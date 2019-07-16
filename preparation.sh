@@ -12,7 +12,7 @@ COMMENT
 mkdir tools
 cd tools
 
-wget -O cellranger-3.0.2.tar.gz "http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.0.2.tar.gz?Expires=1562278360&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9jZWxsLWV4cC9jZWxscmFuZ2VyLTMuMC4yLnRhci5neiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTU2MjI3ODM2MH19fV19&Signature=HW0lNZbObneP5KRm-5CAsoRkvU2IjVNI4r-5vxtNDtxqmnFJvsNFw6it6PCP16vIFF89N73Kh-3Ss6djZUy2vxE4RhEkER0PgYxzbUxN5AW~Qr9HLlSEqnpY5ATnF-nP4mJrx7mxZvc2tY4Dm3tJdGg1uyjdnk7K6565tf-R2vaEhcKBB55jdvF9PIjBWtMGSNkZFzXdd-8jpT2PXD1dtunEZKYyveBcBcb6dFeBvQ-bmcbO3PFjUgj5Un0M6vJtEkvPS3vmWmmGm1rUfBgrHf5oOtIF7nOT2BXZiYbSta1cefKhxZ6mVXoEPZf07gvyaBr7oUeT8QMb5frKmHSIyg__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
+wget -O cellranger-3.0.2.tar.gz "http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.0.2.tar.gz?Expires=1563278036&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9jZWxsLWV4cC9jZWxscmFuZ2VyLTMuMC4yLnRhci5neiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTU2MzI3ODAzNn19fV19&Signature=hD-L4gUpZkI3PdP0K0sHbdWQEooE43jfikzaNcaJYUaeq9oWyD25LyaEQ4OYj~QNU-zPIxBqPJsrnL3fW--PeRwJ5F0eFgRfOwJC-OtnJzOM1awnZLyK6LK~gIbMIqfDH6dyZ0o5gl7wJ8rjCNWTpz9zMmoAiajPHphjbU5WwYYpyu27-ACTpTwZlSfHvGW8XcXnD7VYyjU53xjjz~G05HjEQQGHs0a~1FVhmQHOq~ct6RCxbjH-1qNeQ9ia7m1dC1T4DeYsoFRj-wJnD3eiLnpa1nigdYCjUis6yOP-Ho2gE0ZGfaGuUvcEM0226d5787qABdBIFBQNeornjqtNsA__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
 tar -xzvf cellranger-3.0.2.tar.gz
 
 mkdir homer
@@ -35,7 +35,12 @@ cd ../../
 
 wget https://sourceforge.net/projects/subread/files/subread-1.6.4/subread-1.6.4-Linux-x86_64.tar.gz
 tar zxvf subread-1.6.4-Linux-x86_64.tar.gz
-cd ../
+
+mkdir kentutils
+cd kentutils
+rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ ./
+
+cd ../../
 
 module use /usr/local/package/modulefiles
 module load bowtie/2.3.4.3
@@ -46,6 +51,7 @@ mkdir reference
 cd reference
 
 wget http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-GRCh38-3.0.0.tar.gz
+tar -xzvf refdata-cellranger-GRCh38-3.0.0.tar.gz
 
 wget ftp://ftp.ensembl.org/pub/release-93/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
 gunzip Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
@@ -81,6 +87,7 @@ cellranger mkref --genome=GRCh38 \
                  --ref-version=3.0.0
 
 wget http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-mm10-3.0.0.tar.gz
+tar -xzvf refdata-cellranger-mm10-3.0.0.tar.gz
 
 wget ftp://ftp.ensembl.org/pub/release-93/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 gunzip Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
@@ -139,7 +146,7 @@ bowtie2-build -f Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal.
 cd ../
 pip install --user umi_tools
 
-
+cat mail_notification.txt | sendmail -i -t
 
 
 
