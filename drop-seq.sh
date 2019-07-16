@@ -5,7 +5,8 @@
 #-pe def_slot 4
 
 << COMMENT
-USAGE:  qsub -cwd -l os7 drop-seq.sh \
+    Usage:  
+	qsub -cwd -l os7 drop-seq.sh \
 	-1 data/R1_barcode.fastq.gz \
 	-2 data/R2_transcript.fastq.gz \
 	-i ID_NAME -r REFERENCE -c EC
@@ -34,6 +35,7 @@ export PATH=~/Dropseq_dir/tools/homer/bin/:$PATH
 export PATH=~/Dropseq_dir/tools/STAR-2.7.1a/bin/Linux_x86_64/:$PATH
 export PATH=~/Dropseq_dir/tools/subread-1.6.4-Linux-x86_64/bin/:$PATH
 export PATH=~/Dropseq_dir/tools/bedtools2/:$PATH
+export PATH=~/Dropseq_dir/tools/kentutils/:$PATH
 
 #barcode pattern
 BC="CCCCCCCCCCCCNNNNNNNNN"
@@ -81,10 +83,12 @@ if [ $REF = "GRCh38" ] || [ $REF = "hg38" ];then
 	RIB=~/Dropseq_dir/reference/Homo_sapiens/UCSC/hg38/Sequence/AbundantSequences/humRibosomal
 	STAR_REF=~/Dropseq_dir/reference/GRCh38/star/
 	GTF=~/Dropseq_dir/reference/GRCh38/genes/genes.gtf
+	BIGWIG=~/Dropseq_dir/reference/GRCh38/fasta/genome.fa.fai
 elif [ $REF = "mm10" ]; then
 	RIB=~/Dropseq_dir/reference/Mus_musculus/UCSC/mm10/Sequence/AbundantSequences/musRibosomal
 	STAR_REF=~/Dropseq_dir/reference/mm10/star/
 	GTF=~/Dropseq_dir/reference/mm10/genes/genes.gtf
+	BIGWIG=~/Dropseq_dir/reference/mm10/fasta/genome.fa.fai
 else
 	echo "specified reference $REF is not available"
 fi
@@ -199,8 +203,14 @@ bigwig(){
         makeTagDirectory ${WDIR}/bigwig $D6/${ID}_sorted.bam -keepAll -mapq -1
         makeUCSCfile ${WDIR}/bigwig/ -o auto -noadj
         gunzip ${WDIR}/bigwig/bigwig.ucsc.bedGraph.gz
-        bedGraphToBigWig ${WDIR}/bigwig/bigwig.ucsc.bedGraph $hg38 ${WDIR}/bigwig/bigwig.ucsc.bw
+        bedGraphToBigWig ${WDIR}/bigwig/bigwig.ucsc.bedGraph $BIGWIG ${WDIR}/bigwig/bigwig.ucsc.bw
+	mv ${WDIR}/Signal.* ${WDIR}/bigwig/
 	printf "transformation to bigwig finish...\n" >>"$WDIR/${ID}_START_LOG"
+}
+
+mail(){
+	#mv work* output/
+	cat mail_notification.txt | sendmail -i -t
 }
 
 #MAIN
@@ -208,5 +218,6 @@ barcode
 mapping
 fcount
 umi_c
-#bigwig
+bigwig
+mail
 exit;
